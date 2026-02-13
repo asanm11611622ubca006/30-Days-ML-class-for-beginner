@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="heart-icon">❤️</div>
+                <h1>Heart Disease Prediction System</h1>
+                <p class="subtitle">AI-Powered Medical Diagnosis using Naive Bayes Algorithm</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form Card -->
+            <div class="card form-card">
+                <h2 class="card-title">Patient Information</h2>
+                <p class="card-subtitle">Please fill in all the details below</p>
+
+                <form id="predictionForm">
+                    <!-- Row 1 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="1" max="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">Sex</label>
+                            <select id="sex" name="sex" required>
+                                <option value="">Select</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="chestPainType">Chest Pain Type</label>
+                            <select id="chestPainType" name="chestPainType" required>
+                                <option value="">Select</option>
+                                <option value="ATA">Atypical Angina</option>
+                                <option value="NAP">Non-Anginal Pain</option>
+                                <option value="ASY">Asymptomatic</option>
+                                <option value="TA">Typical Angina</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="restingBP">Resting Blood Pressure (mm Hg)</label>
+                            <input type="number" id="restingBP" name="restingBP" min="0" max="300" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cholesterol">Cholesterol (mg/dl)</label>
+                            <input type="number" id="cholesterol" name="cholesterol" min="0" max="600" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fastingBS">Fasting Blood Sugar > 120 mg/dl</label>
+                            <select id="fastingBS" name="fastingBS" required>
+                                <option value="">Select</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="restingECG">Resting ECG</label>
+                            <select id="restingECG" name="restingECG" required>
+                                <option value="">Select</option>
+                                <option value="Normal">Normal</option>
+                                <option value="ST">ST-T Wave Abnormality</option>
+                                <option value="LVH">Left Ventricular Hypertrophy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="maxHR">Maximum Heart Rate</label>
+                            <input type="number" id="maxHR" name="maxHR" min="0" max="250" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exerciseAngina">Exercise Induced Angina</label>
+                            <select id="exerciseAngina" name="exerciseAngina" required>
+                                <option value="">Select</option>
+                                <option value="N">No</option>
+                                <option value="Y">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="oldpeak">Oldpeak (ST Depression)</label>
+                            <input type="number" id="oldpeak" name="oldpeak" step="0.1" min="-5" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="stSlope">ST Slope</label>
+                            <select id="stSlope" name="stSlope" required>
+                                <option value="">Select</option>
+                                <option value="Up">Upsloping</option>
+                                <option value="Flat">Flat</option>
+                                <option value="Down">Downsloping</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Predict Heart Disease</span>
+                        <span class="btn-loader">
+                            <div class="spinner"></div>
+                            Processing...
+                        </span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Result Card -->
+            <div class="card result-card" id="resultCard">
+                <h2 class="card-title">Prediction Result</h2>
+                <div class="result-content" id="resultContent">
+                    <!-- Result will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2026 Heart Disease Prediction System | Powered by Naive Bayes ML Algorithm</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>
